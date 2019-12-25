@@ -6,11 +6,15 @@ Crowdsourcing에서 true label을 얻기 위해서는 여러 worker들이 각 ta
 
 가장 단순한 방법인 MV 방법과 MV의 단점을 보완한 BP, EM 알고리즘을 사용해 WokerModel을 구현
 
+
+
 ## MV(Majority Voting)
 
 각 task들에 대해 할당된 worker들이 부여한 label 중 가장 많은 worker들이 선택한 label을 true label로 사용함
 
 Worker들의 reliability를 고려하지 않고, 모든 worker들을 동일하게 취급하기 때문에 가장 단순한 방법이지만 정확도가 떨어지는 단점이 존재함
+
+
 
 ## BP(Belief Propagation)
 
@@ -40,9 +44,13 @@ Task들의 belief를 update함, 즉, 각 task들의 label의 확률들이 어느
 
 <img src="https://latex.codecogs.com/gif.latex?k">번의 iteration 후의 task <img src="https://latex.codecogs.com/gif.latex?i">의 label은 <img src="https://latex.codecogs.com/gif.latex?i">의 belief <img src="https://latex.codecogs.com/gif.latex?b_i^k">를 최대화하는 값으로 할당함
 
+
+
 ## EM(Expectation Maximization)
 
 Prior인 worker들의 reliability <img src="https://latex.codecogs.com/gif.latex?p_u">가 beta distribution을 따른다고 가정함
+
+
 
 ### E-step
 
@@ -54,6 +62,8 @@ Task <img src="https://latex.codecogs.com/gif.latex?i">의 label은 다음과 �
 
 ![6](./images/6.PNG)
 
+
+
 ### M-step
 
 M-step에서는 E-step에서 계산한 <img src="https://latex.codecogs.com/gif.latex?s_i">의 확률을 사용해 새로운 <img src="https://latex.codecogs.com/gif.latex?\hat{p}_u">를 추정함
@@ -62,11 +72,15 @@ M-step에서는 E-step에서 계산한 <img src="https://latex.codecogs.com/gif.
 
 추정한 값을 통해 worker <img src="https://latex.codecogs.com/gif.latex?u">의 reliability를 update함
 
+
+
 ## Data
 
 각 worker에 연결된 task의 수 <img src="https://latex.codecogs.com/gif.latex?r">에 변화를 주는 SYN dataset과 각 task에 연결된 worker의 수 <img src="https://latex.codecogs.com/gif.latex?l">에 변화를 주는 SIM dataset을 사용
 
 **대학 과목의 project에 사용했던 data이기 때문에 data는 공개하지 않음**
+
+
 
 ## 결과
 
@@ -85,4 +99,3 @@ SIM dataset에서는 각 task에 연결된 worker 수 <img src="https://latex.co
 BP 알고리즘을 naive하게 구현해서 <img src="https://latex.codecogs.com/gif.latex?l">이 증가하면 시간이 오래걸려 BP 알고리즘에 대해서는 <img src="https://latex.codecogs.com/gif.latex?l">이 <img src="https://latex.codecogs.com/gif.latex?[1,5]"> 일 때만 error rate를 측정함
 
 <img src="https://latex.codecogs.com/gif.latex?l">이 증가하면 MV 알고리즘을 포함해 모두 성능은 향상되는 것을 확인
-
